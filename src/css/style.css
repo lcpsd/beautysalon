@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap');
+
+/*RESET*/
+/*O Box border-box faz com que a borda seja considerada no tamanho do elemento*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+/*Variable*/
+:root{
+    --header-height: 4.5rem;
+
+    /* colors */
+    --hue: 159;
+    /* HSL color mode */
+    --base-color: hsl(var(--hue) 36% 57%);
+    --base-color-second: hsl(var(--hue) 65% 88%);
+    --base-color-alt: hsl(var(--hue) 57% 53%);
+    --title-color: hsl(var(--hue) 41% 10%);
+    --text-color: hsl(0 0% 46%);
+    --text-color-light: hsl(0 0% 98%);
+    --body-color: hsl(0 0% 98%);
+}
+/*Base*/
+
+.divider-1{
+    height: 1px;
+    background: linear-gradient(
+        270deg,
+        hsla(var(--hue), 36%, 57%, 1) 0%,
+        hsla(var(--hue), 65%, 88%, 0.34) 100%
+    );
+}
+
+.divider-2{
+    height: 1px;
+    background: linear-gradient(
+        270deg,
+        hsla(var(--hue), 65%, 88%, 0.34),
+        hsla(var(--hue), 36%, 57%, 1)
+    );
+}
+
+.button{
+    background-color: var(--base-color);
+    color: var(--text-color-light);
+    height: 3.5rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 2rem;
+    border-radius: 0.25rem;
+    transition: 0.3s;
+}
+
+.button:hover{
+    background: var(--base-color-alt);
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    scroll-behavior: smooth;
+    font: 400 1rem 'DM Sans', sans-serif;
+    background-color: var(--body-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: auto;
+}
+
+.title{
+    font: 700 1.85rem 'Poppins', sans-serif;
+    color: var(--title-color);
+}
+
+/*Layout*/
+/*rem = root element. Formula de px para rem:  px/tamanho root element (Geralmente 16) */
+#header{
+    background-color: var(--body-color);
+    display: grid;
+    height: var(--header-height);
+    border-bottom: 1px solid #e4e4e4;
+    width: 100%;
+    top:0;
+    position: fixed;
+    z-index: 100;
+
+}
+
+#header.scroll{
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+}
+
+.container{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+/*Navgation*/
+nav{
+    height: var(--header-height);
+    align-items: center;
+    display:flex;
+    justify-content: space-between;
+}
+
+nav .menu{
+    opacity: 0;
+    top: -20rem;
+    visibility: hidden;
+    transition: 0.2s;
+}
+
+nav .menu ul{
+    display: none;
+}
+
+nav.show .menu{
+    opacity: 1;
+    position: fixed;
+    top:0;
+    left: 0;
+
+    visibility: visible;
+
+    background: var(--body-color);
+
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    place-content: center;
+}
+
+nav.show .menu ul{
+    display: grid;
+}
+
+nav.show ul.grid{
+    gap: 4rem;
+}
+
+nav ul li{
+    text-align: center;
+}
+
+nav ul li a{
+    transition: color 0.3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color: var(--base-color);
+}
+
+
+nav ul li a:after{
+    content: "";
+    
+    width: 0%;
+    height: 2px;
+    
+    background: var(--base-color);
+    
+    position: absolute;
+    
+    left: 0;
+    bottom: -1.5rem;
+    
+    transition: width 0.2s;
+}
+
+nav ul li a:hover::after{
+    width:100%;
+}
+
+.toggle{
+    color: var(--base-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+nav .icon-cross{
+    opacity: 0;
+    top: -1.5rem;
+    position: absolute;
+    right: 1.5rem;
+    transition: 0.2s;
+}
+
+nav .icon-cross{
+    visibility: hidden;
+}
+
+nav.show .icon-cross{
+    opacity: 1;
+    top:1.5rem;
+    visibility: visible;
+}
+
+main{
+    margin-top: calc(var(--header-height) + 2rem);
+}
+
+/*Logo*/
+.logo{
+    color: var(--title-color);
+    font: 700 1.31rem 'Poppins', sans-serif;
+}
+
+.logo span{
+    color: var(--base-color);
+}
+
+.logo-alt span{
+    color: var(--body-color);
+}
+
+.section{
+    padding: 5rem 0;
+}
+
+.section .title{
+    margin-bottom: 1rem;
+}
+
+.section header{
+    margin-bottom: 4rem;
+}
+
+.section header strong{
+    color: var(--base-color);
+}
+
+.grid{
+    display: grid;
+    gap: 2rem;
+}
+
+/*Home*/
+
+#home{
+    overflow: hidden;
+}
+
+#home .container{
+    margin: 0;
+}
+
+#home .image{
+    position: relative;
+}
+
+#home .image::before{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: var(--base-color-second);
+    top: -10%;
+    left: 10%;
+    z-index: 0;
+}
+
+#home .image img{
+    position: relative;
+    right: 2.93rem;
+}
+
+
+#home .text{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    text-align: center;
+}
+
+#home .text h1{
+    margin-bottom: 1rem;
+}
+
+#home .text p{
+    margin-bottom: 2rem;
+    max-width: 100%;
+}
+
+/*About*/
+
+
+#about{
+    overflow: hidden;
+}
+
+#about .container{
+    background: white;
+    margin: 0;
+}
+
+#about .image{
+    position: relative;
+}
+
+#about .image::before{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: var(--base-color-second);
+    top: -8.3%;
+    left: -33%;
+    z-index: 0;
+}
+
+#about .image img{
+    position: relative;
+}
+
+
+#about .text{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    text-align: left;
+}
+
+#about .text h1{
+    margin-bottom: 1rem;
+}
+
+#about .text p{
+    margin-bottom: 2rem;
+    max-width: 100%;
+}
+
+/*Services*/
+.cards.grid{
+    gap: 1.5rem;
+}
+
+.card{
+    padding: 2.5rem 2rem;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+    border-bottom: 0.25rem solid var(--base-color);
+    border-radius: 0.25rem 0.25rem 0 0;
+    text-align: center;
+}
+
+.card i{
+    display: block;
+    margin-bottom: 1.5rem;
+    font-size: 5rem;
+}
+
+.card .title{
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/*Testimonials*/
+#testimonials{
+    background: white;
+}
+
+#testimonials container{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#testimonials header{
+    margin-bottom: 0;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+
+#testimonials blockquote{
+    padding: 2rem;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+    border-radius: .25rem;
+}
+
+#testimonials blockquote p{
+    position: relative;
+    text-indent: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--title-color);
+}
+
+#testimonials blockquote p span{
+    font: 700 2.5rem serif;
+    position: absolute;
+    left: -1.8rem;
+    top:-.50rem;
+    color: var(--base-color);
+}
+
+
+#testimonials cite{
+    display: flex;
+    align-items: center;
+    font-style: normal;
+}
+
+#testimonials cite img{
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    clip-path: circle();
+    margin-right: .5rem;
+}
+
+.swiper-slide{
+    height: auto;
+    padding: 4rem 1rem;
+}
+
+.swiper-pagination-bullet-active{
+    background: var(--base-color);
+}
+
+/*Contact*/
+#contact .grid{
+    gap: 4rem;
+}
+
+#contact .text p{
+    margin-bottom: 2rem;
+}
+
+#contact .button i,
+#contact ul li i{
+    font-size: 1rem;
+    margin-right: 0.62rem;
+}
+
+#contact ul.grid{
+    gap: 2rem;
+}
+
+#contact ul li{
+    display: flex;
+    align-items: center;
+}
+
+#contact ul li i{
+    color: var(--base-color);
+}
+
+/*Footer*/
+footer{
+
+    background: var(--base-color);
+}
+
+footer .logo{
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+footer .brand p{
+    margin-bottom: 0.75rem;
+    color: var(--text-color-light);
+}
+
+footer i{
+    font-size: 1.5rem;
+    color: var(--text-color-light);
+}
+
+footer .social a{
+    transition: .3s;
+    margin-right: 2rem;
+    display: inline-block;
+}
+
+footer .social a:hover{
+    transform: translateY(-15px);
+}
+
+/*Back to top button*/
+
+.back-to-top{
+    background: var(--base-color);
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    padding: .5rem;
+    clip-path: circle();
+    color: var(--text-color-light);
+    font-size: 1rem;
+    visibility: hidden;
+    transition: .3s;
+    opacity: 0;
+    bottom: -1rem;
+}
+
+.back-to-top.show{
+    visibility: visible;
+    opacity: 1;
+    bottom: 1rem;
+}
+
+/*Responsability*/
+
+/*Large Devices 992 >*/
+@media (min-width: 992px){
+ 
+}
