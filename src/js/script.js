@@ -34,7 +34,13 @@ const swiper = new Swiper('.swiper', {
         el: '.swiper-pagination'
     },
     mousewheel: true,
-    keyboard: true
+    keyboard: true,
+    breakpoints:{
+        767:{
+            slidesPerView: 2,
+            setWrapperSize: true,
+        }
+    }
 
 });
 
@@ -67,10 +73,36 @@ function backToTop(){
         backTopButton.classList.remove('show')
     }
 }
+//Menu Active
+const sections = document.querySelectorAll('main section[id]')
+
+function activateMenu(){
+    const checkpoint = window.pageYOffset + (window.innerHeight / 8) * 4
+
+    for(section of sections){
+        const sectionTop = section.offsetTop
+        const sectionHeight = section.offsetHeight
+        const sectionId = section.getAttribute('id')
+
+        const checkpointStart = checkpoint >= sectionTop
+        const checkpointEnd  = checkpoint <= sectionTop + sectionHeight
+
+        if(checkpointStart && checkpointEnd){
+            document
+            .querySelector('nav ul li a[href*=' + sectionId +']')
+            .classList.add('active')
+        } else{
+            document
+            .querySelector('nav ul li a[href*=' + sectionId +']')
+            .classList.remove('active')
+        }
+    }
+}
 
 //Scroll functions group
-
 window.addEventListener('scroll', () => {
     backToTop()
     changeHeaderWhenScroll()
+    activateMenu()
 })
+
